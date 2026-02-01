@@ -347,8 +347,8 @@
 
         #history {
             position: absolute;
-            top: 650px;
-            right: 250px;
+            top: 100px;
+            left: 800px;
             width: 260px;
             height: 400px;
             background: #020617;
@@ -360,7 +360,7 @@
         }
 
         #history.show {
-            right: 20px;
+            display: block;
         }
 
         #history h3 {
@@ -550,13 +550,12 @@
             s = true;
             document.getElementById("infoPanel").style.display = "none";
             document.getElementById("Calculator").classList.remove("hidden");
-            document.getElementById("history").classList.remove("hidden");
+
         }
 
         function closeinfo() {
             document.getElementById("infoPanel").style.display = "none";
             document.getElementById("Calculator").classList.remove("hidden");
-            document.getElementById("history").classList.remove("hidden");
         }
 
         document.addEventListener("keydown", (e) => {
@@ -577,6 +576,7 @@
             }
         });
         function his() {
+
             document.getElementById("history").classList.toggle("show");
         }
         document.getElementById("historyList").addEventListener("click", (e) => {
@@ -600,12 +600,4 @@
     </script>
 </body>
 
-
 </html>
-
-
-
-
-
-
-
