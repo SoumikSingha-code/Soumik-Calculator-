@@ -1,0 +1,604 @@
+<html>
+
+<head>
+    <title>Calculator</title>
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #0f172a;
+        }
+
+        .body {
+            background-color: #e5e7eb;
+            width: 650px;
+            height: 600px;
+            border-radius: 30px;
+            animation: box 2s alternate infinite;
+            position: relative;
+            font-size: 30px;
+            border-radius: 20px;
+        }
+
+        @keyframes box {
+            from {
+                transform: translateY(-7px);
+            }
+
+            to {
+                transform: translateY(7px);
+            }
+        }
+
+        #display {
+            background: black;
+            color: white;
+            width: 600px;
+            height: 90px;
+            position: relative;
+            top: 10px;
+            left: 22px;
+            border-radius: 10px;
+            text-align: right;
+            font-size: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: right;
+            font-family: 'calabiri';
+            border: #020617 3px solid;
+        }
+
+        button {
+            width: 80px;
+            height: 80px;
+            border-radius: 20px;
+            font-size: larger;
+            transition: all 0.8s ease;
+            color: white;
+            font-size: 30px;
+            border-radius: 20px;
+            border: white 3px solid;
+            background-color: 007bff;
+            position: relative;
+        }
+
+        button:hover {
+            width: 85px;
+            height: 85px;
+            filter: brightness(1.1);
+        }
+
+        button::after {
+            content: attr(data-tip);
+            position: absolute;
+            bottom: 120%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: black;
+            color: white;
+            padding: 5px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: 0.3s;
+        }
+
+        button:hover::after {
+            opacity: 1;
+        }
+
+        @keyframes aurora {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .b0 {
+            position: relative;
+            left: 101px;
+            top: 20px;
+            background-color: #2563eb;
+
+        }
+
+        .b1 {
+            background-color: #2563eb;
+        }
+
+        .b2 {
+            background-color: #2563eb;
+        }
+
+        .b3 {
+            background-color: #2563eb;
+        }
+
+        .b4 {
+            background-color: #2563eb;
+        }
+
+        .b5 {
+            background-color: #2563eb;
+        }
+
+        .b6 {
+            background-color: #2563eb;
+        }
+
+        .b7 {
+            background-color: #2563eb;
+        }
+
+        .b8 {
+            background-color: #2563eb;
+        }
+
+        .b9 {
+            background-color: #2563eb;
+        }
+
+        .del {
+            position: relative;
+            top: 20px;
+            background-color: #ef4444;
+        }
+
+        .bsum {
+            position: relative;
+            top: 20px;
+            color: #111827;
+            background-color: #f59e0b;
+        }
+
+        .bmin {
+            position: relative;
+            background-color: #f59e0b;
+            left: 101px;
+            top: 20px;
+            color: #111827;
+        }
+
+        .binto {
+            position: relative;
+            background-color: #f59e0b;
+            left: 101px;
+            top: 20px;
+            color: #111827;
+        }
+
+        .bdiv {
+            position: relative;
+            background-color: #f59e0b;
+            left: 101px;
+            top: 20px;
+            color: #111827;
+        }
+
+        .bclear {
+            position: relative;
+            background-color: #ef4444;
+            left: 101px;
+            top: 20px;
+        }
+
+        .bequ {
+            position: relative;
+            top: -220px;
+            left: 421px;
+            background-color: #22c55e;
+            color: #022c22;
+        }
+
+        .bequ:hover .bdot:hover {
+            filter: brightness(1.15);
+        }
+
+        .bdot {
+            position: relative;
+            top: -220px;
+            left: 437px;
+            background-color: #1e40af;
+            color: #bfdbfe;
+        }
+
+        .bequ:active .bdot:active {
+            transform: scale(0.95);
+        }
+
+        .bb1 {
+            display: flex;
+            gap: 20px;
+            position: relative;
+            top: 40px;
+            left: 60px;
+            width: auto;
+        }
+
+        .bb2 {
+            display: flex;
+            gap: 20px;
+            position: relative;
+            top: 60px;
+            left: 60px;
+            width: auto;
+        }
+
+        .bb3 {
+            display: flex;
+            gap: 20px;
+            position: relative;
+            top: 80px;
+            left: 60px;
+        }
+
+        .bb4 {
+            display: flex;
+            gap: 120px;
+            position: relative;
+            top: -300px;
+            left: 320px;
+        }
+
+        .bb5 {
+            display: flex;
+            gap: 20px;
+            position: relative;
+            top: -280px;
+            left: 321px;
+        }
+
+        .bb6 {
+            display: flex;
+            gap: 120px;
+            position: relative;
+            top: -260px;
+            left: 321px;
+        }
+
+        .bb7 {
+            display: flex;
+            gap: 20px;
+            position: relative;
+            top: 80px;
+            right: 40px;
+        }
+
+        .cont {
+            position: fixed;
+        }
+
+        #infoPanel {
+            max-width: 320px;
+            background: #1e1e1e;
+            color: #fff;
+            padding: 18px;
+            border-radius: 10px;
+            font-size: 20px;
+            margin: 40px auto;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            transform: opacity 0.3s ease transform 0.3s ease;
+        }
+
+        #infoPanel.hidden {
+            opacity: 0;
+            transform: scale(0.95);
+            pointer-events: none;
+        }
+
+        #infoPanel h3 {
+            margin-top: 0;
+            text-align: center;
+            font-size: 25px;
+        }
+
+        #infoPanel ul {
+            padding-left: 18px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .st {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            font-size: 15px;
+            background: #4caf50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .st:hover {
+            width: 100%;
+        }
+
+
+        .clb {
+            position: absolute;
+            right: 510px;
+            font-size: 32px;
+            cursor: pointer;
+            color: #bbb;
+            width: 10px;
+            height: 10px;
+            background: none;
+            border: none;
+        }
+
+        .clb:hover {
+            color: #fff;
+            right: 510px;
+            font-size: 32px;
+            cursor: pointer;
+        }
+
+        #history {
+            position: absolute;
+            top: 100px;
+            right: 500px;
+            width: 260px;
+            height: 400px;
+            background: #020617;
+            color: white;
+            border-radius: 12px;
+            padding: 15px;
+            transition: right 0.3s ease;
+            overflow-y: auto;
+        }
+
+        #history.show {
+            right: 20px;
+        }
+
+        #history h3 {
+            margin-top: 0px;
+            text-align: center;
+        }
+
+        #historyList {
+            list-style: none;
+            padding: 0;
+        }
+
+        #historyList li {
+            padding: 8px;
+            border-bottom: 1px solid #334155;
+            font-size: 18px;
+        }
+
+        #history::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        #history::-webkit-scrollbar-track {
+            background: #1e293b;
+            border-radius: 10px;
+        }
+
+        #history::-webkit-scrollbar-thumb {
+            background: #64748b;
+            border-radius: 10px;
+        }
+
+        #history::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="infoPanel">
+        <span class="clb" onclick="closeinfo()">×</span>
+        <h3>HOW TO USE THE CALCULATOR</h3>
+        <ul>
+            <li><b>+</b> Addition</li>
+            <li><b>-</b> Substraction</li>
+            <li><b>×</b> Multiply</li>
+            <li><b>/</b> Divide</li>
+            <li><b>=</b> Calculate</li>
+            <li><b>C (press Backspace on keyboard)</b> Clear all</li>
+            <li><b>← (press Delete on keyboard)</b> Addition</li>
+            <li><b>keyboard</b> Numbers and Operators support</li>
+        </ul>
+        <button type="button" onclick="startcal()" class="st" data-tip="Click to continue to the calculator!">Start
+            Calculator</button>
+    </div>
+    <div id="history" class="hidden">
+        <h3>HISTORY</h3>
+        <UL id="historyList"></UL>
+    </div>
+    <div id="Calculator" class="hidden">
+        <div class="body">
+            <div class="cont">
+                <p id="display"></p>
+                <div class="bb1">
+                    <button type="button" onclick="show(1)" class="b1" data-tip="1">1</button>
+                    <button type="button" onclick="show(2)" class="b2" data-tip="2">2</button>
+                    <button type="button" onclick="show(3)" class="b3" data-tip="3">3</button>
+                </div>
+                <div class="bb2">
+                    <button type="button" onclick="show(4)" class="b4" data-tip="4">4</button>
+                    <button type="button" onclick="show(5)" class="b5" data-tip="5">5</button>
+                    <button type="button" onclick="show(6)" class="b6" data-tip="6">6</button>
+                </div>
+                <div class="bb3">
+                    <button type="button" onclick="show(7)" class="b7" data-tip="7">7</button>
+                    <button type="button" onclick="show(8)" class="b8" data-tip="8">8</button>
+                    <button type="button" onclick="show(9)" class="b9" data-tip="9">9</button>
+                </div>
+                <div class="bb7">
+                    <button type="button" id="hidbtn" onclick="his()" class="b0" data-tip="History">※</button>
+                    <button type="button" onclick="show(0)" class="b0" data-tip="0">0</button>
+                    <button type="button" onclick="percent()" class="b0" data-tip="Percent">%</button>
+
+                </div>
+                <div class="bb4">
+                    <button type="button" onclick="clean()" class="bclear" data-tip="Clear everything">C</button>
+                    <button type="button" onclick="del()" class="del" data-tip="Delete">←</button>
+                </div>
+                <div class="bb5">
+                    <button type="button" onclick="show('×')" class="binto" data-tip="Multiply">×</button>
+                    <button type="button" onclick="show('/')" class="bdiv" data-tip="Divide">/</button>
+                </div>
+                <div class="bb6">
+
+                    <button type="button" onclick="show('-')" class="bmin" data-tip="Substraction">-</button>
+                    <button type="button" onclick="show('+')" class="bsum" data-tip="Addition">+</button>
+                </div>
+                <button type="button" onclick="cal()" class="bequ" data-tip="Equals to">=</button>
+                <button type="button" onclick="show('.')" class="bdot" data-tip="Dot">.</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        function show(char) {
+
+            const display = document.getElementById("display");
+            let text = display.innerText;
+
+            // Normalize multiplication input
+            if (char === "*") char = "×";
+
+            const operators = ["+", "-", "×", "/"];
+
+            // Prevent operator at start (except minus)
+            if (text === "" && operators.includes(char) && char !== "-") return;
+
+            const lastChar = text.slice(-1);
+
+            // REPLACE operator if last is also an operator
+            if (operators.includes(lastChar) && operators.includes(char)) {
+                display.innerText = text.slice(0, -1) + char;
+                return;
+            }
+
+            // Prevent multiple dots in the same number
+            if (char === "." && text.split(/[+\-×\/]/).pop().includes(".")) return;
+
+            display.innerText += char;
+        }
+
+
+        function del() {
+            let display = document.getElementById("display");
+            display.innerText = display.innerText.slice(0, -1);
+        }
+
+        function clean() {
+            confirm("Do you want to clear the screen?");
+            let display = document.getElementById("display").innerText;
+            document.getElementById("display").innerText = "";
+
+        }
+
+        function cal() {
+            const display = document.getElementById("display");
+            const his = document.getElementById("history");
+            let element = display.innerText;
+            if (element === "")
+                return;
+            element = element.replace(/×/g, '*');
+            try {
+                let result = eval(element)
+                const li = document.createElement("li");
+                li.innerText = element + "=" + result;
+                historyList.prepend(li);
+                display.innerText = result;
+            }
+            catch {
+                alert("Invalid Expression!");
+            }
+        }
+
+        document.addEventListener("keydown", (event) => {
+            let key = event.key;
+            if (!isNaN(key)) {
+                show(key);
+            }
+            else if (key === '+' || key === '-' || key === '*' || key === '/' || key === '.') {
+                show(key);
+            }
+            else if (key === "Enter" || key === '=') {
+                cal();
+            }
+            else if (key === "Backspace") {
+                del();
+            }
+            else if (key === "Delete" || key === "Escape") {
+                clean();
+            }
+            else if (key === "%") {
+                percent();
+            }
+        });
+
+        let s = false;
+        function startcal() {
+            if (s) return;
+            s = true;
+            document.getElementById("infoPanel").style.display = "none";
+            document.getElementById("Calculator").classList.remove("hidden");
+            document.getElementById("history").classList.remove("hidden");
+        }
+
+        function closeinfo() {
+            document.getElementById("infoPanel").style.display = "none";
+            document.getElementById("Calculator").classList.remove("hidden");
+            document.getElementById("history").classList.remove("hidden");
+        }
+
+        document.addEventListener("keydown", (e) => {
+            const display = document.getElementById("display");
+            const operators = "+-*/%";
+            if (operators.includes(e.key)) {
+                e.preventDefault();
+
+                if (display.value === "") return;
+
+                const lastChar = display.value.slice(-1);
+
+                if (operators.includes(lastChar)) {
+                    display.value = display.value.slice(0, -1) + e.key;
+                } else {
+                    display.value += e.key;
+                }
+            }
+        });
+        function his() {
+            document.getElementById("history").classList.toggle("show");
+        }
+        document.getElementById("historyList").addEventListener("click", (e) => {
+            if (e.target.tagName === "LI") {
+                document.getElementById("display").innerText = e.target.innerText.split("=")[1].trim();
+            }
+        });
+        function percent() {
+            const display = document.getElementById("display");
+            let text = display.innerText;
+            if (text === "")
+                return;
+            let parts = text.split(/([+\-×\/])/);
+            let last = parts.pop();
+            if (isNaN(last))
+                return;
+            last = Number(last) / 100;
+            parts.push(last);
+            display.innerText = parts.join("");
+        }
+    </script>
+</body>
+
+</html>
